@@ -1,4 +1,4 @@
-import { useState, SyntheticEvent } from 'react';
+import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
@@ -31,7 +31,7 @@ import { Eye, EyeSlash } from 'iconsax-react';
 
 // ============================|| AWS CONNITO - LOGIN ||============================ //
 
-const AuthLogin = ({ forgot }: { forgot: string }) => {
+const AuthLogin = ({ forgot }) => {
   const [checked, setChecked] = useState(false);
 
   const { login } = useAuth();
@@ -42,7 +42,7 @@ const AuthLogin = ({ forgot }: { forgot: string }) => {
     setShowPassword(!showPassword);
   };
 
-  const handleMouseDownPassword = (event: SyntheticEvent) => {
+  const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
@@ -65,7 +65,7 @@ const AuthLogin = ({ forgot }: { forgot: string }) => {
               setStatus({ success: true });
               setSubmitting(false);
             }
-          } catch (err: any) {
+          } catch (err) {
             console.error(err);
             if (scriptedRef.current) {
               setStatus({ success: false });

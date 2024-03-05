@@ -13,7 +13,7 @@ import { Lock } from 'iconsax-react';
 
 // ============================|| AUTH0 - LOGIN ||============================ //
 
-const AuthLogin = ({ forgot }: { forgot: string }) => {
+const AuthLogin = () => {
   const { login } = useAuth();
   const scriptedRef = useScriptRef();
 
@@ -21,7 +21,7 @@ const AuthLogin = ({ forgot }: { forgot: string }) => {
   const loginHandler = async () => {
     try {
       await login();
-    } catch (err: any) {
+    } catch (err) {
       if (scriptedRef.current) {
         setError(err.message);
       }

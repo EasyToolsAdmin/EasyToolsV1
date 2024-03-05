@@ -1,4 +1,4 @@
-import { useState, FocusEvent, SyntheticEvent } from 'react';
+import { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
@@ -33,7 +33,7 @@ import { Eye, EyeSlash } from 'iconsax-react';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
-const AuthLogin = ({ forgot }: { forgot: string }) => {
+const AuthLogin = () => {
   const [checked, setChecked] = useState(false);
   const [capsWarning, setCapsWarning] = useState(false);
 
@@ -45,11 +45,11 @@ const AuthLogin = ({ forgot }: { forgot: string }) => {
     setShowPassword(!showPassword);
   };
 
-  const handleMouseDownPassword = (event: SyntheticEvent) => {
+  const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
-  const onKeyDown = (keyEvent: any) => {
+  const onKeyDown = (keyEvent) => {
     if (keyEvent.getModifierState('CapsLock')) {
       setCapsWarning(true);
     } else {
@@ -78,13 +78,13 @@ const AuthLogin = ({ forgot }: { forgot: string }) => {
                 // To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
                 // github issue: https://github.com/formium/formik/issues/2430
               },
-              (err: any) => {
+              (err) => {
                 setStatus({ success: false });
                 setErrors({ submit: err.message });
                 setSubmitting(false);
               }
             );
-          } catch (err: any) {
+          } catch (err) {
             console.error(err);
             if (scriptedRef.current) {
               setStatus({ success: false });
@@ -129,7 +129,7 @@ const AuthLogin = ({ forgot }: { forgot: string }) => {
                     type={showPassword ? 'text' : 'password'}
                     value={values.password}
                     name="password"
-                    onBlur={(event: FocusEvent<any, Element>) => {
+                    onBlur={(event) => {
                       setCapsWarning(false);
                       handleBlur(event);
                     }}

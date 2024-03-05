@@ -1,4 +1,4 @@
-import { useEffect, useState, SyntheticEvent } from 'react';
+import { useEffect, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
@@ -29,9 +29,6 @@ import AnimateButton from 'components/@extended/AnimateButton';
 import FirebaseSocial from './FirebaseSocial';
 import { strengthColor, strengthIndicator } from 'utils/password-strength';
 
-// types
-import { StringColorProps } from 'types/password';
-
 // assets
 import { Eye, EyeSlash } from 'iconsax-react';
 
@@ -41,17 +38,17 @@ const AuthRegister = () => {
   const { firebaseRegister } = useAuth();
   const scriptedRef = useScriptRef();
 
-  const [level, setLevel] = useState<StringColorProps>();
+  const [level, setLevel] = useState();
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleMouseDownPassword = (event: SyntheticEvent) => {
+  const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
-  const changePassword = (value: string) => {
+  const changePassword = (value) => {
     const temp = strengthIndicator(value);
     setLevel(strengthColor(temp));
   };
@@ -86,13 +83,13 @@ const AuthRegister = () => {
                 // To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
                 // github issue: https://github.com/formium/formik/issues/2430
               },
-              (err: any) => {
+              (err) => {
                 setStatus({ success: false });
                 setErrors({ submit: err.message });
                 setSubmitting(false);
               }
             );
-          } catch (err: any) {
+          } catch (err) {
             console.error(err);
             if (scriptedRef.current) {
               setStatus({ success: false });
